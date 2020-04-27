@@ -1,0 +1,17 @@
+{
+  "name": "socialmediaapp",
+  "version": "1.0.0",
+  "description": "Making social media application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "swapnil kant",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "mongoose": "^5.9.10",
+    "nodemon": "^2.0.3"
+  }
+}
