@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Social Media App</a>
+  <a class="navbar-brand" href="/">SocialMedia</a>
+  {{#if user}}
+  <a class="navbar-brand" href="/profile">Welcome, {{user.firstname}}</a>
+  {{else}}
+  {{/if}}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,9 +13,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
       </li>
+      {{#if user}}
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="navbar-brand" href="/logout"><i class="fa fa-sign-out">Logout</i></a>
       </li>
+      {{else}}
+      {{/if}}
     </ul>
   </div>
 </nav>
