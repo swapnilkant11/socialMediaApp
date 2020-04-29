@@ -10,9 +10,9 @@
         </div>
         <div class="col-sm-4">
             <h1>Profile</h1>
-            <p class="card-text"><i class="fa fa-user"></i>{{user.fullname}}</p>
+            <p class="card-text"><i class="fa fa-user"></i> {{user.fullname}}</p>
             {{#if user.email}}
-            <p class="card-text"><i class="fa fa-envelope">{{user.email}}</i></p>
+            <p class="card-text"><i class="fa fa-envelope"> {{user.email}}</i></p>
             {{else}}
             <form action="/addEmail" method="POST">
             <input type="text" name="email" class="form-control"
@@ -21,7 +21,7 @@
             </form>
             {{/if}}
             {{#if user.phone}}
-            <p class="card-text"><i class="fa fa-phone"></i>{{user.phone}}</p>
+            <p class="card-text"><i class="fa fa-phone"></i> {{user.phone}}</p>
             {{else}}
             <form action="/addPhone" method="POST" class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
@@ -31,7 +31,7 @@
             </form>
             {{/if}}
             {{#if user.location}}
-            <p class="card-text"><i class="fa fa-map-marker"></i>{{user.location}}</p>
+            <p class="card-text"><i class="fa fa-map-marker"></i> {{user.location}}</p>
             {{else}}
             <form action="/addLocation" method="POST" class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
