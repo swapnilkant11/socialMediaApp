@@ -16,6 +16,11 @@ const User = require('./models/user.js');
 // Link passports to the server.
 require('./passport/google-passport');
 require('./passport/facebook-passport');
+// Link helpers.
+const {
+    ensureAuthentication,
+    ensureGuest
+} = require('./helpers/auth');
 // Initialize our application.
 const app = express();
 
@@ -69,7 +74,7 @@ mongoose.connect(keys.MongoURI, {
 const port = process.env.PORT || 3000;
 
 // Handle routes.
-app.get('/', (req, res) => {
+app.get('/', ensureGuest, (req, res) => {
     res.render('home');
 });
 
@@ -107,7 +112,7 @@ app.get('/auth/facebook/callback',
     res.redirect('/profile');
   });
 // Handdle profile route.
-app.get('/profile', (req, res) => {
+app.get('/profile', ensureAuthentication, (req, res) => {
     User.findById({_id: req.user._id})
     .then((user) => {
         res.render('profile', {
