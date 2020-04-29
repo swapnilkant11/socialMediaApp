@@ -116,6 +116,18 @@ app.get('/profile', (req, res) => {
     })    
 });
 
+// Handle email POST route.
+app.post('/addEmail', (req, res) => {
+    const email = req.body.email;
+    User.findById({_id: req.user._id})
+    .then((user) => {
+        user.email = email;
+        user.save()
+        .then(() => {
+            res.redirect('/profile');
+        })
+    })
+})
 // User logout handle route.
 app.get('/logout', (req, res) => {
     req.logOut();

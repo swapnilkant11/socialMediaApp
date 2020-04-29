@@ -11,7 +11,15 @@
         <div class="col-sm-4">
             <h1>Profile</h1>
             <p class="card-text"><i class="fa fa-user"></i>{{user.fullname}}</p>
+            {{#if user.email}}
             <p class="card-text"><i class="fa fa-envelope">{{user.email}}</i></p>
+            {{else}}
+            <form action="/addEmail" method="POST">
+            <input type="text" name="email" class="form-control"
+            placeholder="Enter email address">
+            <button type ="submit" class="btn btn-danger">Save</button>
+            </form>
+            {{/if}}
         </div>       
     </div>
 </div>
