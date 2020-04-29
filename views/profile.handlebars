@@ -16,8 +16,28 @@
             {{else}}
             <form action="/addEmail" method="POST">
             <input type="text" name="email" class="form-control"
-            placeholder="Enter email address">
+            placeholder="Enter your email address">
             <button type ="submit" class="btn btn-danger">Save</button>
+            </form>
+            {{/if}}
+            {{#if user.phone}}
+            <p class="card-text"><i class="fa fa-phone"></i>{{user.phone}}</p>
+            {{else}}
+            <form action="/addPhone" method="POST" class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="number" name="phone" class="form-control" placeholder="Enter your phone number">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-check "></i></button>
+            </form>
+            {{/if}}
+            {{#if user.location}}
+            <p class="card-text"><i class="fa fa-map-marker"></i>{{user.location}}</p>
+            {{else}}
+            <form action="/addLocation" method="POST" class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="text" name="location" class="form-control" placeholder="Enter your location / city and country">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-check "></i></button>
             </form>
             {{/if}}
         </div>       

@@ -133,6 +133,31 @@ app.post('/addEmail', (req, res) => {
         })
     })
 })
+// Handle phone route.
+app.post('/addPhone', (req, res) => {
+    const phone = req.body.phone;
+    User.findById({_id: req.user._id})
+    .then((user) => {
+        user.phone = phone;
+        user.save()
+        .then(() => {
+            res.redirect('/profile');
+        })
+    });
+});
+
+// Handle location POST route.
+app.post('/addLocation', (req, res) => {
+    const location = req.body.location;
+    User.findById({_id: req.user._id})
+    .then((user) => {
+        user.location = location;
+        user.save()
+        .then(() => {
+            res.redirect('/profile');
+        })
+    });
+});
 // User logout handle route.
 app.get('/logout', (req, res) => {
     req.logOut();
