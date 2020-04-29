@@ -46,6 +46,8 @@ h1{
 #main{
     margin-top: 60px;
     margin-bottom: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
 }
 .col-sm-4{
     margin-bottom: 10px;
@@ -66,5 +68,15 @@ h1{
 }
 .card{
     width: 200px;
+    height: 100px;
+}
+#users-image{
+    width: 100px;
     height: auto;
+}
+#users-box{
+    margin: 5px 5px 5px 5px;
+}
+.row{
+    width: 100%;
 }
