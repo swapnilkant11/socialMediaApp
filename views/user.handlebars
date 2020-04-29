@@ -1,9 +1,23 @@
 <div class="container">
-    <div class="card" style="width: 18rem;">
-        <img src="{{user.image}}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{user.fullname}}</h5>
-            <p class="card-text">{{user.location}}</p>
+    <div class="row">
+        <div class="col-small-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{user.image}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.fullname}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h1>Profile</h1>
+            <p>Firstname: <span class="red">{{user.firstname}}</span></p>
+            <p>Lastname: <span class="red">{{user.lastname}}</span></p>
+            <p>Email: <span class="red">{{user.email}}</span></p>
+            {{#if user.location}}
+            <p>Location: <span class="red">{{user.location}}</span></p>
+            {{else}}
+            <p>Location: <span class="red">unknown</span></p>
+            {{/if}}
         </div>
     </div>
 </div>

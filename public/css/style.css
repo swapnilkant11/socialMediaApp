@@ -58,5 +58,13 @@ h1{
     height: auto;
 }
 .red{
-    color: green;
+    color: red;
+}
+#comment-user-picture{
+    width: 65px;
+    height: auto;
+}
+.card{
+    width: 200px;
+    height: auto;
 }

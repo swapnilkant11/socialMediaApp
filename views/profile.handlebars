@@ -44,19 +44,22 @@
     </div>
     <div class="container">
         <h1>My Posts</h1>
-    {{#each posts}}
-    <div class="media">
-        <img src="{{user.image}}" class="mr-3 post-user-pic">
-        <div class="media-body">
-            <h3 class="mt-0">{{user.fullname}}</h5>
-            <h4>{{title}} <small class="red">{{status}}</small></h4>
-            <p>{{body}}</p>
-            <small>{{date}}</small>
-            <br>
-            <p>
-                <a href="/editPost/{{_id}}"><i class="fa fa-pencil"></i></a>
-            </p>
-        </div>
+        {{#each posts}}
+        <div class="media">
+            <img src="{{user.image}}" class="mr-3 post-user-pic">
+            <div class="media-body">
+                <h3 class="mt-0">{{user.fullname}}</h5>
+                <h4>{{title}} <small class="red">{{status}}</small></h4>
+                <p>{{body}}</p>
+                <small>{{date}}</small>
+                <br>
+                <p>
+                    <a href="/editPost/{{_id}}"><i class="fa fa-pencil"></i></a>
+                    <form action="/{{_id}}?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </form>
+                </p>
+            </div>
     </div>
     <hr>
     {{else}}
