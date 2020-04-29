@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="row">
+        {{#each users}}
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{image}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{fullname}}</h5>
+                    <p id="address" class="card-title">{{location}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -47,3 +47,9 @@ h1{
     margin-top: 60px;
     margin-bottom: 50px;
 }
+.col-sm-4{
+    margin-bottom: 10px;
+}
+#address {
+    color: green;
+}
