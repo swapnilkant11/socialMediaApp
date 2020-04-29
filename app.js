@@ -6,13 +6,15 @@ const passport = require('passport');
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const Handlebars = require('handlebars')
+const Handlebars = require('handlebars');
+const methodOverride = require('method-override');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 // Connect to MongoURI exported from external file.
 const keys = require('./config/keys.js');
-// User collection.
+// Load models.
 const User = require('./models/user.js');
+const Post = require('./models/post');
 // Link passports to the server.
 require('./passport/google-passport');
 require('./passport/facebook-passport');
@@ -41,6 +43,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true 
 }));
+app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -111,23 +114,37 @@ app.get('/auth/facebook/callback',
     // Successful authentication, redirect home.
     res.redirect('/profile');
   });
+
 // Handdle profile route.
 app.get('/profile', ensureAuthentication, (req, res) => {
-    User.findById({_id: req.user._id})
-    .then((user) => {
+    Post.find({user: req.user._id})
+    .populate('user')
+    .sort({date:'desc'})
+    .then((posts) => {
         res.render('profile', {
-            user:user
+            posts:posts
         });
-    });   
+    }); 
 });
 // Handle route for ALL USERS.
-app.get('/users', (req, res) => {
+app.get('/users', ensureAuthentication, (req, res) => {
     User.find({}).then((users) =>{
         res.render('users', {
             users:users
         });
     });
 });
+
+// Display one USER profile.
+app.get('/user/:id', (req, res) => {
+    User.findById({_id: req.params.id})
+    .then((user) => {
+        res.render('user', {
+            user:user
+        });
+    });
+});
+
 // Handle email POST route.
 app.post('/addEmail', (req, res) => {
     const email = req.body.email;
@@ -163,6 +180,71 @@ app.post('/addLocation', (req, res) => {
         .then(() => {
             res.redirect('/profile');
         })
+    });
+});
+
+// Handle get routes for POST.
+app.get('/addPost', (req, res) => {
+    res.render('addPost');
+});
+// Handle post route.
+app.post('/savePost', (req, res) => {
+    var allowComments;
+    if(req.body.allowComments){
+        allowComments = true;
+    }else{
+        allowComments = false;
+    }
+    const newPost = {
+        title: req.body.title,
+        body: req.body.body,
+        status: req.body.status,
+        allowComments: allowComments,
+        user: req.user._id
+    }
+    new Post(newPost).save()
+    .then(() => {
+        res.redirect('/posts');
+    });
+});
+// Handle EDIT POST route.
+app.get('/editPost/:id', (req, res) => {
+    Post.findOne({_id: req.params.id})
+    .then((post) => {
+        res.render('editingPost', {
+            post:post
+        });
+    });
+});
+// Handle PUT route to SAVE EDITED POST.
+app.put('/editingPost/:id', (req, res) => {
+    Post.findOne({_id: req.params.id})
+    .then((post) => {
+        var allowComments;
+        if(req.body.allowComments){
+            allowComments = true;
+        }else{
+            allowComments = false;
+        }
+        post.title = req.body.title;
+        post.body = req.body.body;
+        post.status = req.body.status;
+        post.allowComments = allowComments;
+        post.save()
+        .then(() => {
+            res.redirect('/profile');
+        });
+    });
+});
+// Handle posts route
+app.get('/posts', ensureAuthentication, (req, res) => {
+    Post.find({status: 'public'})
+    .populate('user')
+    .sort({date: 'desc'})
+    .then((posts) => {
+        res.render('publicPosts', {
+            posts:posts
+        });
     });
 });
 // User logout handle route.

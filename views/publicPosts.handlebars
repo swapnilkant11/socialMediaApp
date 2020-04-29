@@ -1,0 +1,16 @@
+<div class="container">
+    {{#each posts}}
+    <div class="media">
+        <img src="{{user.image}}" class="mr-3 post-user-pic">
+        <div class="media-body">
+            <h3 class="mt-0">{{user.fullname}}</h5>
+            <h4>{{title}} <small class="red"><i class="fa fa-globe"></i></small></h4>
+            <p>{{body}}</p>
+            <small>{{date}}</small>
+        </div>
+    </div>
+    <hr>
+    {{else}}
+    <p>No posts found ...</p>
+    {{/each}}
+</div>
