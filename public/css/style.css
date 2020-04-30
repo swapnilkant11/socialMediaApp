@@ -25,18 +25,6 @@
     background-color: #e44b34;
     color: #fff;
 }
-.btn-instagram{
-    background-color: rgb(195, 42, 163);
-    border-radius: 0%;
-    width: auto;
-    color: #fff;
-}
-.btn-instagram:link, 
-.btn-instagram:visited{
-    text-decoration: none;
-    background-color: rgb(195, 42, 163);
-    color: #fff;
-}
 #welcome{
     color: #4aa1f3;
 }
@@ -65,10 +53,6 @@ h1{
 #comment-user-picture{
     width: 65px;
     height: auto;
-}
-.card{
-    width: 200px;
-    height: 100px;
 }
 #users-image{
     width: 100px;
