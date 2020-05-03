@@ -1,6 +1,9 @@
 # Social Media Application
 Social Media Application with users, posts and comments - developed using Express, Handlebars, Passport, HTML, CSS, Javascript.
 
+### Link to live application
+<https://pure-ocean-77174.herokuapp.com/>
+
 ## What you need to run this code
 1. Node (10.15.3)
 2. NPM (6.13.4)
