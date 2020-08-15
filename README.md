@@ -8,6 +8,9 @@ Social Media Application with users, posts and comments - developed using Expres
 4. Users can also enable comment or no-comment feature while checking the checkbox during post creation.
 5. Users can view all other users using the app by going to the users page by clicking on the public iconon the nav bar.
 
+## Link to live app
+<https://pure-ocean-77174.herokuapp.com/>
+
 
 ## What you need to run this code
 1. Node (10.15.3)
